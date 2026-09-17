@@ -2,7 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Search, Menu, X, ChevronDown, Phone } from "lucide-react";
+import {
+  Search,
+  Menu,
+  X,
+  ChevronDown,
+  Phone,
+  Calendar,
+  Send,
+} from "lucide-react";
 
 interface NavLink {
   name: string;
@@ -14,8 +22,19 @@ interface NavLink {
 const Nav: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const phoneNumber = "776913230";
+  // États du formulaire de réservation
+  const [formData, setFormData] = useState({
+    fullName: "",
+    phone: "",
+    service: "Soin du visage",
+    date: "",
+    time: "",
+    notes: "",
+  });
+
+  const phoneNumber = "221776913230"; // Format international pour l'API WhatsApp
   const displayPhone = "77 691 32 30";
 
   const navLinks: NavLink[] = [
@@ -26,96 +45,110 @@ const Nav: React.FC = () => {
     { name: "CONTACT", href: "#" },
   ];
 
-  // Détecte le scroll pour opacifier le menu
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 30);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Empêche le défilement du corps quand le menu mobile est ouvert
   useEffect(() => {
-    if (isMobileMenuOpen) {
+    if (isMobileMenuOpen || isModalOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, isModalOpen]);
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleBookingSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Construction du message WhatsApp
+    const message =
+      `✨ *NOUVELLE DEMANDE DE RÉSERVATION* ✨\n\n` +
+      `👤 *Nom complet :* ${formData.fullName}\n` +
+      `📞 *Téléphone :* ${formData.phone}\n` +
+      `💅 *Soin choisi :* ${formData.service}\n` +
+      `📅 *Date souhaitée :* ${formData.date}\n` +
+      `⏰ *Heure souhaitée :* ${formData.time}\n` +
+      (formData.notes ? `📝 *Notes :* ${formData.notes}\n\n` : `\n`) +
+      `Merci de confirmer la disponibilité !`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    // Redirection vers WhatsApp
+    window.open(whatsappUrl, "_blank");
+
+    // Réinitialisation et fermeture
+    setIsModalOpen(false);
+    setFormData({
+      fullName: "",
+      phone: "",
+      service: "Soin du visage",
+      date: "",
+      time: "",
+      notes: "",
+    });
+  };
 
   return (
     <>
       <style>{`
-        /* Media Queries pour la Responsivité */
-        .nav-desktop-list {
-          display: flex;
-        }
-        .mobile-toggle-btn {
-          display: flex;
-        }
-        .phone-text-desktop {
-          display: inline;
-        }
+        .nav-desktop-list { display: flex; }
+        .mobile-toggle-btn { display: flex; }
+        .phone-text-desktop { display: inline; }
 
         @media (min-width: 992px) {
-          .nav-desktop-list {
-            display: flex !important;
-          }
-          .mobile-toggle-btn {
-            display: none !important;
-          }
+          .nav-desktop-list { display: flex !important; }
+          .mobile-toggle-btn { display: none !important; }
         }
 
         @media (max-width: 991px) {
-          .nav-desktop-list {
-            display: none !important;
-          }
-          .nav-container-custom {
-            padding: 12px 20px !important;
-          }
+          .nav-desktop-list { display: none !important; }
+          .nav-container-custom { padding: 12px 20px !important; }
         }
 
         @media (max-width: 576px) {
-          .nav-container-custom {
-            padding: 10px 15px !important;
-          }
-          .phone-text-desktop {
-            display: none !important;
-          }
-          .phone-button-custom {
-            padding: 8px 10px !important;
-            border-radius: 50% !important;
-          }
-          .logo-brand-text {
-            font-size: 16px !important;
-          }
-          .logo-subtext-text {
-            font-size: 8px !important;
-          }
+          .nav-container-custom { padding: 10px 15px !important; }
+          .phone-text-desktop { display: none !important; }
+          .phone-button-custom { padding: 8px 10px !important; border-radius: 50% !important; }
+          .logo-brand-text { font-size: 16px !important; }
+          .logo-subtext-text { font-size: 8px !important; }
+          .btn-reserve-text { display: none; }
+          .btn-reserve-custom { padding: 8px 12px !important; }
         }
 
-        /* Hover & Interactivité */
-        .nav-link-hover {
-          position: relative;
-        }
+        .nav-link-hover { position: relative; }
         .nav-link-hover::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 2px;
-          bottom: -4px;
-          left: 0;
-          background-color: #E2BAA9;
-          transition: width 0.3s ease;
+          content: ''; position: absolute; width: 0; height: 2px;
+          bottom: -4px; left: 0; background-color: #E2BAA9; transition: width 0.3s ease;
         }
-        .nav-link-hover:hover::after {
+        .nav-link-hover:hover::after { width: 100%; }
+
+        .input-field {
           width: 100%;
+          padding: 10px 12px;
+          border: 1px solid #EAE3DE;
+          border-radius: 8px;
+          font-size: 14px;
+          outline: none;
+          box-sizing: border-box;
+          background-color: #FAF7F5;
+          color: #2A2421;
+        }
+        .input-field:focus {
+          border-color: #B88E7D;
         }
       `}</style>
 
@@ -181,6 +214,16 @@ const Nav: React.FC = () => {
             </span>
           </a>
 
+          {/* Bouton Réserver */}
+          <button
+            className="btn-reserve-custom"
+            style={styles.reserveButton}
+            onClick={() => setIsModalOpen(true)}
+          >
+            <Calendar size={15} color="#ffffff" />
+            <span className="btn-reserve-text">RÉSERVER</span>
+          </button>
+
           <button style={styles.iconButton} aria-label="Rechercher">
             <Search size={19} strokeWidth={1.8} color="#ffffff" />
           </button>
@@ -196,7 +239,7 @@ const Nav: React.FC = () => {
         </div>
       </nav>
 
-      {/* Overlay Mobile */}
+      {/* Overlay & Menu Mobile */}
       {isMobileMenuOpen && (
         <div
           style={styles.mobileOverlay}
@@ -204,7 +247,6 @@ const Nav: React.FC = () => {
         />
       )}
 
-      {/* Drawer Mobile */}
       <div
         style={{
           ...styles.mobileDrawer,
@@ -228,7 +270,6 @@ const Nav: React.FC = () => {
           <button
             style={styles.closeButton}
             onClick={() => setIsMobileMenuOpen(false)}
-            aria-label="Fermer le menu"
           >
             <X size={22} color="#2A2421" />
           </button>
@@ -252,14 +293,132 @@ const Nav: React.FC = () => {
           ))}
         </ul>
 
-        {/* Bouton d'appel mobile */}
-        <div style={styles.mobilePhoneContainer}>
+        <div style={styles.mobileActionContainer}>
+          <button
+            style={styles.mobileReserveButton}
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              setIsModalOpen(true);
+            }}
+          >
+            <Calendar size={16} />
+            <span>Réserver un soin</span>
+          </button>
+
           <a href={`tel:${phoneNumber}`} style={styles.mobilePhoneButton}>
             <Phone size={16} color="#ffffff" />
             <span>Appeler au {displayPhone}</span>
           </a>
         </div>
       </div>
+
+      {/* MODALE DE RÉSERVATION */}
+      {isModalOpen && (
+        <div style={styles.modalOverlay}>
+          <div style={styles.modalContent}>
+            <div style={styles.modalHeader}>
+              <h3 style={styles.modalTitle}>Réserver votre soin</h3>
+              <button
+                style={styles.closeButton}
+                onClick={() => setIsModalOpen(false)}
+              >
+                <X size={20} color="#2A2421" />
+              </button>
+            </div>
+
+            <form onSubmit={handleBookingSubmit} style={styles.form}>
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Nom complet *</label>
+                <input
+                  type="text"
+                  name="fullName"
+                  required
+                  className="input-field"
+                  placeholder="Ex: Aminata Diallo"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Téléphone *</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  className="input-field"
+                  placeholder="Ex: 77 000 00 00"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Service / Soin *</label>
+                <select
+                  name="service"
+                  className="input-field"
+                  value={formData.service}
+                  onChange={handleChange}
+                >
+                  <option value="Soin du visage">Soin du visage</option>
+                  <option value="Massage Relaxant">Massage Relaxant</option>
+                  <option value="Manucure & Pédicure">
+                    Manucure & Pédicure
+                  </option>
+                  <option value="Épilation">Épilation</option>
+                  <option value="Coiffure & Esthétique">
+                    Coiffure & Esthétique
+                  </option>
+                </select>
+              </div>
+
+              <div style={{ display: "flex", gap: "10px" }}>
+                <div style={{ ...styles.formGroup, flex: 1 }}>
+                  <label style={styles.label}>Date *</label>
+                  <input
+                    type="date"
+                    name="date"
+                    required
+                    className="input-field"
+                    value={formData.date}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div style={{ ...styles.formGroup, flex: 1 }}>
+                  <label style={styles.label}>Heure *</label>
+                  <input
+                    type="time"
+                    name="time"
+                    required
+                    className="input-field"
+                    value={formData.time}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Notes ou préférences</label>
+                <textarea
+                  name="notes"
+                  rows={3}
+                  className="input-field"
+                  placeholder="Précisions sur votre soin..."
+                  value={formData.notes}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <button type="submit" style={styles.submitButton}>
+                <Send size={16} />
+                <span>Envoyer via WhatsApp</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 };
@@ -367,7 +526,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   iconGroup: {
     display: "flex",
-    gap: "12px",
+    gap: "10px",
     alignItems: "center",
   },
   phoneButton: {
@@ -381,10 +540,24 @@ const styles: { [key: string]: React.CSSProperties } = {
     textDecoration: "none",
     fontSize: "12px",
     fontWeight: "600",
-    transition: "transform 0.2s ease, background-color 0.3s ease",
   },
   phoneText: {
     color: "#2A2421",
+  },
+  reserveButton: {
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    backgroundColor: "#B88E7D",
+    color: "#FFFFFF",
+    border: "none",
+    padding: "8px 16px",
+    borderRadius: "20px",
+    cursor: "pointer",
+    fontSize: "12px",
+    fontWeight: "600",
+    letterSpacing: "0.5px",
+    transition: "background-color 0.3s ease",
   },
   iconButton: {
     background: "none",
@@ -395,7 +568,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignItems: "center",
     justifyContent: "center",
     borderRadius: "50%",
-    transition: "background-color 0.2s ease",
   },
   mobileOverlay: {
     position: "fixed",
@@ -468,9 +640,27 @@ const styles: { [key: string]: React.CSSProperties } = {
   mobileNavLinkActive: {
     color: "#B88E7D",
   },
-  mobilePhoneContainer: {
+  mobileActionContainer: {
     marginTop: "auto",
     paddingTop: "25px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  },
+  mobileReserveButton: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "10px",
+    backgroundColor: "#B88E7D",
+    color: "#FFFFFF",
+    padding: "12px",
+    borderRadius: "25px",
+    border: "none",
+    fontSize: "13px",
+    fontWeight: "600",
+    cursor: "pointer",
+    width: "100%",
   },
   mobilePhoneButton: {
     display: "flex",
@@ -486,6 +676,78 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: "500",
     width: "100%",
     boxSizing: "border-box",
+  },
+  /* Styles Modale Formulaire */
+  modalOverlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100vw",
+    height: "100vh",
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    backdropFilter: "blur(4px)",
+    zIndex: 1000,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "20px",
+    boxSizing: "border-box",
+  },
+  modalContent: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: "16px",
+    width: "100%",
+    maxWidth: "450px",
+    padding: "24px",
+    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)",
+    boxSizing: "border-box",
+  },
+  modalHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "20px",
+    paddingBottom: "10px",
+    borderBottom: "1px solid #EAE3DE",
+  },
+  modalTitle: {
+    margin: 0,
+    fontFamily: "var(--font-playfair), 'Playfair Display', serif",
+    fontSize: "20px",
+    color: "#2A2421",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "14px",
+  },
+  formGroup: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6px",
+  },
+  label: {
+    fontSize: "12px",
+    fontWeight: "600",
+    color: "#2A2421",
+    textTransform: "uppercase",
+    letterSpacing: "0.5px",
+  },
+  submitButton: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "8px",
+    backgroundColor: "#25D366", // Couleur WhatsApp
+    color: "#FFFFFF",
+    border: "none",
+    padding: "12px",
+    borderRadius: "8px",
+    fontSize: "14px",
+    fontWeight: "600",
+    cursor: "pointer",
+    marginTop: "10px",
+    transition: "background-color 0.2s ease",
   },
 };
 
