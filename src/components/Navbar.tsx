@@ -506,7 +506,7 @@ const Nav: React.FC = () => {
 const styles: { [key: string]: React.CSSProperties } = {
   navContainer: {
     display: "flex",
-    justify: "space-between",
+    justifyContent: "space-between",
     alignItems: "center",
     padding: "16px 40px",
     color: "white",
