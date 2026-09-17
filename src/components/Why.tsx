@@ -9,13 +9,13 @@ interface ProgressItem {
 
 const Why: React.FC = () => {
   const skills: ProgressItem[] = [
-    { label: "Livraisons à Temps", percentage: 95 },
     { label: "Clients Satisfaits", percentage: 98 },
-    { label: "Événements & Décorations Réussis", percentage: 92 },
-    { label: "Fraîcheur des Fleurs Garantie", percentage: 100 },
+    { label: "Qualité des Soins & Produits Bio", percentage: 100 },
+    { label: "Soins Sur-Mesure Réussis", percentage: 95 },
+    { label: "Respect des Rendez-vous & Ponctualité", percentage: 96 },
   ];
 
-  const bgImage = "/h.jpg";
+  const bgImage = "/hero.png";
 
   return (
     <>
@@ -23,7 +23,7 @@ const Why: React.FC = () => {
         /* Media Queries pour la réactivité */
         @media (max-width: 1024px) {
           .why-content-column {
-            maxWidth: 100% !important;
+            max-width: 100% !important;
             flex: 1 !important;
           }
           .why-title {
@@ -37,7 +37,7 @@ const Why: React.FC = () => {
             min-height: auto !important;
           }
           .why-overlay {
-            background: rgba(0, 0, 0, 0.75) !important; /* Renforcement de l'ombre sur mobile */
+            background: rgba(42, 36, 33, 0.85) !important; /* Renforcement du voile sur mobile */
           }
           .why-title {
             font-size: 28px !important;
@@ -84,15 +84,15 @@ const Why: React.FC = () => {
             </span>
 
             <h2 className="why-title" style={styles.title}>
-              L'Excellence Florale au Service de Vos Plus Beaux Moments
+              L'Excellence du Soin au Service de Votre Bien-Être
             </h2>
 
             <p className="why-description" style={styles.description}>
-              Chez Ndiaye Fleuriste Family, nous mettons un point d'honneur à
-              offrir des compositions d'une fraîcheur irréprochable et un
-              service personnalisé. Notre engagement envers la qualité et la
-              passion du détail font de nous votre partenaire de confiance pour
-              tous vos événements.
+              Chez Secret Beauty & Spa, nous plaçons la satisfaction et le
+              confort de nos clients au centre de nos attentions. Grâce à nos
+              produits haut de gamme et notre savoir-faire unique, nous vous
+              garantissons une expérience apaisante et revitalisante à chaque
+              visite.
             </p>
 
             {/* Liste des barres de progression */}
@@ -108,7 +108,7 @@ const Why: React.FC = () => {
 
                   {/* Barre de fond */}
                   <div style={styles.progressBarBg}>
-                    {/* Barre de progression Vert Ndiaye Fleuriste */}
+                    {/* Barre de progression Rose/Nude Secret Beauty */}
                     <div
                       style={{
                         ...styles.progressBarFill,
@@ -134,7 +134,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     minHeight: "600px",
     backgroundSize: "cover",
     backgroundPosition: "center left",
-    backgroundColor: "#111111",
+    backgroundColor: "#2A2421",
     color: "#ffffff",
     display: "flex",
     alignItems: "center",
@@ -148,9 +148,9 @@ const styles: { [key: string]: React.CSSProperties } = {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.45)",
+    backgroundColor: "rgba(42, 36, 33, 0.55)",
     background:
-      "linear-gradient(to right, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 60%)",
+      "linear-gradient(to right, rgba(42, 36, 33, 0.3) 0%, rgba(42, 36, 33, 0.9) 60%)",
     zIndex: 1,
   },
   container: {
@@ -173,13 +173,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     width: "100%",
   },
   subtitle: {
-    color: "#72B842", // Vert du logo
-    fontSize: "15px",
+    color: "#B88E7D", // Accent Nude / Rosé
+    fontSize: "14px",
     fontWeight: "600",
     display: "block",
     marginBottom: "10px",
     textTransform: "uppercase",
-    letterSpacing: "0.5px",
+    letterSpacing: "1px",
   },
   title: {
     fontSize: "40px",
@@ -191,7 +191,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   description: {
     fontSize: "13px",
     lineHeight: "1.8",
-    color: "rgba(255, 255, 255, 0.8)",
+    color: "rgba(255, 255, 255, 0.85)",
     marginBottom: "40px",
     fontFamily: "sans-serif",
   },
@@ -218,7 +218,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   progressPercentage: {
     fontSize: "13px",
     fontWeight: "bold",
-    color: "#72B842", // Vert du logo
+    color: "#E2BAA9",
     fontFamily: "sans-serif",
   },
   progressBarBg: {
@@ -230,7 +230,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   progressBarFill: {
     height: "100%",
-    backgroundColor: "#72B842", // Vert du logo
+    backgroundColor: "#B88E7D",
     transition: "width 1s ease-in-out",
   },
 };

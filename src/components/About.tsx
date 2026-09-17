@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Play, CircleDollarSign, Flower2 } from "lucide-react";
+import { Play, Sparkles, HeartHandshake } from "lucide-react";
 
 const About: React.FC = () => {
   return (
@@ -30,7 +30,7 @@ const About: React.FC = () => {
             margin-top: 15px !important;
           }
           .story-section {
-            padding: 60px 20px 100px 20px !important; /* Section élargie pour éviter le débordement */
+            padding: 60px 20px 100px 20px !important;
           }
           .story-image-collage {
             margin-left: 0 !important;
@@ -63,10 +63,8 @@ const About: React.FC = () => {
             font-size: 28px !important;
           }
           .story-section {
-            padding: 50px 20px 120px 20px !important; /* Élargissement supplémentaire en bas */
+            padding: 50px 20px 120px 20px !important;
           }
-          
-          /* Conservation du style de superposition initial ajusté pour mobile */
           .story-image-collage {
             height: 420px !important;
             position: relative !important;
@@ -124,27 +122,27 @@ const About: React.FC = () => {
         }
       `}</style>
 
-      {/* SECTION 1: À Propos de Ndiaye Fleuriste & Carte Vidéo */}
+      {/* SECTION 1: À Propos de Secret Beauty & Spa */}
       <section className="about-section" style={styles.section}>
         <div className="about-container" style={styles.container}>
           {/* Colonne Gauche - Cartes & Caractéristiques */}
           <div style={styles.leftColumn}>
-            {/* Carte Principale "Fleurs Fraîches" avec Vidéo */}
+            {/* Carte Vidéo "Soins d'Exception" */}
             <div className="video-card" style={styles.videoCard}>
               <div className="video-thumbnail" style={styles.videoThumbnail}>
                 <img
-                  src="/a.jpg"
-                  alt="Fleurs Fraîches Ndiaye Fleuriste"
+                  src="/ab.jpg"
+                  alt="Soins d'Exception Secret Beauty & Spa"
                   style={styles.thumbnailImage}
                 />
                 <button
                   style={styles.playButton}
-                  aria-label="Regarder la vidéo"
+                  aria-label="Regarder la présentation"
                 >
                   <Play
                     size={20}
-                    fill="white"
-                    color="white"
+                    fill="#2A2421"
+                    color="#2A2421"
                     style={{ marginLeft: "3px" }}
                   />
                 </button>
@@ -153,12 +151,12 @@ const About: React.FC = () => {
                 className="video-card-content"
                 style={styles.videoCardContent}
               >
-                <h3 style={styles.cardTitle}>Fleurs Fraîches</h3>
+                <h3 style={styles.cardTitle}>Soins & Relaxation</h3>
                 <p style={styles.cardText}>
-                  Nos fleurs sont sélectionnées chaque matin avec soin pour vous
-                  garantir un éclat d'exception et une fraîcheur durable.
+                  Une sélection rigoureuse de produits haut de gamme et de
+                  techniques apaisantes pour sublimer votre peau au quotidien.
                 </p>
-                <a href="#" style={styles.readMoreLink}>
+                <a href="#services" style={styles.readMoreLink}>
                   EN SAVOIR PLUS
                 </a>
               </div>
@@ -166,34 +164,30 @@ const About: React.FC = () => {
 
             {/* Grille des 2 sous-fonctionnalités */}
             <div className="features-grid" style={styles.featuresGrid}>
-              {/* Meilleurs Tarifs */}
+              {/* Produits & Soins Bio */}
               <div style={styles.featureItem}>
                 <div style={styles.iconWrapper}>
-                  <CircleDollarSign
-                    size={36}
-                    color="#72B842"
-                    strokeWidth={1.2}
-                  />
+                  <Sparkles size={36} color="#B88E7D" strokeWidth={1.2} />
                 </div>
-                <h4 style={styles.featureTitle}>Prix Accessible</h4>
+                <h4 style={styles.featureTitle}>Éclat & Pureté</h4>
                 <p style={styles.featureText}>
-                  Des compositions florales de haute qualité adaptées à tous vos
-                  budgets pour embellir tous vos événements.
+                  Des protocoles de soins ciblés pour revitaliser le teint et
+                  apporter une fraîcheur naturelle durable.
                 </p>
                 <a href="#" style={styles.readMoreLink}>
                   EN SAVOIR PLUS
                 </a>
               </div>
 
-              {/* Couronnes & Bouquets */}
+              {/* Expérience Sur-Mesure */}
               <div style={styles.featureItem}>
                 <div style={styles.iconWrapper}>
-                  <Flower2 size={36} color="#72B842" strokeWidth={1.2} />
+                  <HeartHandshake size={36} color="#B88E7D" strokeWidth={1.2} />
                 </div>
-                <h4 style={styles.featureTitle}>Créations Sur-Mesure</h4>
+                <h4 style={styles.featureTitle}>Accompagnement</h4>
                 <p style={styles.featureText}>
-                  Bouquets de mariage, couronnes décoratives et arrangements
-                  personnalisés confectionnés sur demande.
+                  Un diagnostic personnalisé pour répondre précisément aux
+                  besoins uniques de votre peau et de votre corps.
                 </p>
                 <a href="#" style={styles.readMoreLink}>
                   EN SAVOIR PLUS
@@ -206,103 +200,105 @@ const About: React.FC = () => {
           <div className="about-right-column" style={styles.rightColumn}>
             <span style={styles.subtitle}>À Propos de Nous</span>
             <h2 className="main-title" style={styles.mainTitle}>
-              Des Décorations Florales Élégantes Inspirées par la Nature
+              Un Sanctuaires de Sérénité Dédié à Votre Beauté
             </h2>
 
             <p style={styles.paragraph}>
-              Depuis notre atelier familial, nous mettons notre passion au
-              service de la fleuristerie. Chaque arrangement est une œuvre d'art
-              pensée pour transmettre vos émotions, célébrer la joie et sublimer
-              vos espaces de vie.
+              Au cœur de notre institut, nous concevons le bien-être comme un
+              art de vivre. Secret Beauty & Spa est né de la volonté d'offrir
+              une parenthèse de douceur loin du stress quotidien.
             </p>
 
             <p style={styles.paragraph}>
-              Chez Ndiaye Fleuriste Family, nous travaillons avec une attention
-              particulière portée au détail, en combinant harmonieusement
-              variétés locales et exotiques pour créer des bouquets uniques et
-              mémorables.
+              Chaque rituel est méticuleusement préparé pour répondre au slogan
+              « Du Soin au Besoin ». Nos praticiennes expérimentées utilisent
+              des gestes précis et des soins de haute qualité pour révéler votre
+              éclat naturel.
             </p>
 
             {/* Pied de section : Nom & Signature */}
             <div className="signature-row" style={styles.signatureRow}>
               <div>
-                <h5 style={styles.authorName}>Fondateur Ndiaye</h5>
+                <h5 style={styles.authorName}>L'Équipe Institut</h5>
                 <span style={styles.authorRole}>
-                  Maison Ndiaye Fleuriste Family
+                  Maison Secret Beauty & Spa
                 </span>
               </div>
-              <div style={styles.signatureGraphic}>Ndiaye Fleuriste</div>
+              <div style={styles.signatureGraphic}>Secret Beauty & Spa</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: Notre Histoire */}
+      {/* SECTION 2: Notre Philosophie */}
       <section className="story-section" style={styles.storySection}>
         <div className="story-container" style={styles.storyContainer}>
-          {/* Bloc Texte (Carte Blanche avec ombre) */}
+          {/* Bloc Texte */}
           <div className="story-text-card" style={styles.storyTextCard}>
-            <span style={styles.subtitle}>Notre Histoire</span>
+            <span style={styles.subtitle}>Notre Philosophie</span>
             <h2 className="story-title" style={styles.storyTitle}>
-              Une Large Gamme de Fleurs & Plantes pour Chaque Occasion
+              Une Palette de Massages et Traitments Esthétiques
             </h2>
 
             <p style={styles.paragraph}>
-              Née d'un savoir-faire familial transmis au fil des années, notre
-              boutique est devenue une référence locale pour les amoureux de la
-              nature et du végétal.
+              Guidés par l'exigence du détail et l'écoute attentive, nous
+              proposons une large carte de soins allant des rituels relaxation
+              aux soins esthétiques avancés.
             </p>
 
             <p style={styles.paragraph}>
-              Qu'il s'agisse d'un anniversaire, d'un mariage, d'un remerciement
-              ou d'un hommage, nous vous accompagnons dans le choix des plus
-              belles compositions.
+              Que ce soit pour préparer un événement particulier, vous détendre
+              après une longue semaine ou prendre soin de vous régulièrement,
+              notre centre s'adapte à vos besoins.
             </p>
 
             <p style={styles.paragraph}>
-              Faites confiance à notre équipe pour livrer la beauté naturelle
-              directement chez vous avec la plus grande délicatesse.
+              Laissez-vous transporter par une atmosphère apaisante et des
+              senteurs délicates pensées pour le bien-être de vos sens.
             </p>
 
-            <button className="story-button" style={styles.storyButton}>
-              DÉCOUVRIR NDIAYE FLEURISTE
-            </button>
+            <a
+              href="https://wa.me/221776913230"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="story-button"
+              style={styles.storyButton}
+            >
+              PRENDRE RENDEZ-VOUS
+            </a>
           </div>
 
-          {/* Composition de photos superposées */}
+          {/* Collage de photos */}
           <div className="story-image-collage" style={styles.storyImageCollage}>
-            {/* Image 1: Haut / Gauche */}
             <div
               className="photo-top-left"
               style={{ ...styles.photoFrame, ...styles.photoTopLeft }}
             >
               <img
-                src="/a2.jpg"
-                alt="Roses en vase"
+                src="/ab2.jpeg"
+                alt="Massage apaisant"
                 style={styles.collageImg}
               />
             </div>
 
-            {/* Image 2: Droite */}
             <div
               className="photo-right"
               style={{ ...styles.photoFrame, ...styles.photoRight }}
             >
               <img
-                src="/a3.jpeg"
-                alt="Bouquet de fleurs"
+                src="/ab3.jpg"
+                alt="Soin du visage"
                 style={styles.collageImg}
               />
             </div>
 
-            {/* Image 3: Bas / Centre */}
             <div
               className="photo-bottom-center"
               style={{ ...styles.photoFrame, ...styles.photoBottomCenter }}
             >
               <img
-                src="/a4.jpeg"
-                alt="Préparation d'un bouquet de roses"
+                src="/ab4.jpg"
+                alt="Espace relaxation Spa"
                 style={styles.collageImg}
               />
             </div>
@@ -318,7 +314,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   pageWrapper: {
     backgroundColor: "#ffffff",
     fontFamily: "var(--font-playfair), 'Playfair Display', serif",
-    color: "#333333",
+    color: "#2A2421",
     width: "100%",
     overflowX: "hidden",
   },
@@ -350,8 +346,8 @@ const styles: { [key: string]: React.CSSProperties } = {
   videoCard: {
     display: "flex",
     backgroundColor: "#ffffff",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
-    borderRadius: "4px",
+    boxShadow: "0 10px 30px rgba(42, 36, 33, 0.06)",
+    borderRadius: "6px",
     overflow: "hidden",
   },
   videoThumbnail: {
@@ -372,13 +368,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     width: "46px",
     height: "46px",
     borderRadius: "50%",
-    backgroundColor: "#72B842",
+    backgroundColor: "#E2BAA9",
     border: "none",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     cursor: "pointer",
-    boxShadow: "0 4px 12px rgba(114, 184, 66, 0.4)",
+    boxShadow: "0 4px 12px rgba(226, 186, 169, 0.5)",
   },
   videoCardContent: {
     width: "55%",
@@ -391,17 +387,17 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "22px",
     fontWeight: "normal",
     margin: "0 0 12px 0",
-    color: "#222222",
+    color: "#2A2421",
   },
   cardText: {
     fontSize: "13px",
     lineHeight: "1.6",
-    color: "#777777",
+    color: "#666666",
     margin: "0 0 15px 0",
     fontFamily: "sans-serif",
   },
   readMoreLink: {
-    color: "#72B842",
+    color: "#B88E7D",
     fontSize: "12px",
     fontWeight: "600",
     letterSpacing: "1px",
@@ -423,36 +419,36 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "20px",
     fontWeight: "normal",
     margin: "0 0 12px 0",
-    color: "#222222",
+    color: "#2A2421",
   },
   featureText: {
     fontSize: "13px",
     lineHeight: "1.6",
-    color: "#777777",
+    color: "#666666",
     margin: "0 0 15px 0",
     fontFamily: "sans-serif",
   },
   /* Textes Généraux */
   subtitle: {
-    color: "#72B842",
-    fontSize: "15px",
+    color: "#B88E7D",
+    fontSize: "14px",
     fontWeight: "600",
     display: "block",
     marginBottom: "10px",
     textTransform: "uppercase",
-    letterSpacing: "0.5px",
+    letterSpacing: "1px",
   },
   mainTitle: {
     fontSize: "38px",
     fontWeight: "normal",
     lineHeight: "1.25",
     margin: "0 0 25px 0",
-    color: "#111111",
+    color: "#2A2421",
   },
   paragraph: {
     fontSize: "13px",
     lineHeight: "1.8",
-    color: "#666666",
+    color: "#555555",
     marginBottom: "20px",
     fontFamily: "sans-serif",
   },
@@ -467,25 +463,26 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "18px",
     fontWeight: "normal",
     margin: "0 0 4px 0",
-    color: "#222222",
+    color: "#2A2421",
   },
   authorRole: {
     fontSize: "12px",
-    color: "#72B842",
+    color: "#B88E7D",
     fontFamily: "sans-serif",
     fontWeight: "500",
   },
   signatureGraphic: {
-    fontFamily: "'Playball', 'Caveat', 'Dancing Script', cursive",
-    fontSize: "32px",
-    color: "#555555",
+    fontFamily: "'Playfair Display', serif",
+    fontSize: "22px",
+    fontStyle: "italic",
+    color: "#B88E7D",
     opacity: 0.8,
   },
 
   /* SECTION 2: OUR STORY STYLES */
   storySection: {
     padding: "100px 20px",
-    backgroundColor: "#fcfcfc",
+    backgroundColor: "#FAF7F5",
     width: "100%",
     boxSizing: "border-box",
   },
@@ -500,22 +497,24 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   storyTextCard: {
     backgroundColor: "#ffffff",
-    padding: "50px 50px 0px 50px",
-    boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
+    padding: "50px 50px 30px 50px",
+    boxShadow: "0 10px 40px rgba(42, 36, 33, 0.05)",
     width: "520px",
     zIndex: 2,
     position: "relative",
+    borderRadius: "4px",
   },
   storyTitle: {
     fontSize: "36px",
     fontWeight: "normal",
     lineHeight: "1.2",
     margin: "0 0 25px 0",
-    color: "#111111",
+    color: "#2A2421",
   },
   storyButton: {
-    backgroundColor: "#72B842",
-    color: "white",
+    display: "inline-block",
+    backgroundColor: "#2A2421",
+    color: "#ffffff",
     border: "none",
     padding: "16px 32px",
     fontSize: "12px",
@@ -524,6 +523,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: "pointer",
     marginTop: "15px",
     transform: "translateY(25px)",
+    borderRadius: "20px",
+    textDecoration: "none",
   },
   storyImageCollage: {
     flex: 1,
@@ -538,6 +539,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: "12px",
     boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
     boxSizing: "border-box",
+    borderRadius: "4px",
   },
   collageImg: {
     width: "100%",

@@ -3,7 +3,9 @@
 import React from "react";
 
 const Hero: React.FC = () => {
-  const heroBackgroundImage = "/h3.jpg";
+  const heroBackgroundImage = "/hero.png";
+  const phoneNumber = "776913230";
+  const displayPhone = "+221 77 691 32 30";
 
   return (
     <>
@@ -49,7 +51,7 @@ const Hero: React.FC = () => {
             line-height: 1.3 !important;
           }
           .hero-subtitle {
-            font-size: 14px !important;
+            font-size: 13px !important;
           }
           .hero-info-row {
             flex-direction: column !important;
@@ -73,20 +75,20 @@ const Hero: React.FC = () => {
           <div style={styles.heroContent}>
             {/* Sous-titre */}
             <span className="hero-subtitle" style={styles.subtitle}>
-              Ndiaye Fleuriste Family
+              Secret Beauty & Spa • Du Soin au Besoin
             </span>
 
             {/* Titre principal */}
             <h1 className="hero-title" style={styles.title}>
-              Sublimez Vos Moments Avec Nos Fleurs Fraîches
+              Révélez Votre Beauté & Sublimez Votre Bien-Être
             </h1>
 
             {/* Description */}
             <p className="hero-description" style={styles.description}>
-              Artisan fleuriste passionné, nous composons des bouquets uniques
-              et sur-mesure pour célébrer tous vos événements. Découvrez la
-              fraîcheur et la beauté de nos créations florales faites avec
-              amour.
+              Offrez-vous un moment d'exception dédié à la relaxation et aux
+              soins du corps. Nos spécialistes vous accompagnent avec des
+              prestations sur-mesure pour régénérer votre peau et apaiser votre
+              esprit.
             </p>
 
             {/* Informations détaillées */}
@@ -96,15 +98,23 @@ const Hero: React.FC = () => {
                 <span style={styles.infoValue}>Dakar, Sénégal</span>
               </div>
               <div style={styles.infoItem}>
-                <span style={styles.infoLabel}>Contact Direct</span>
-                <span style={styles.infoValue}>+221 77 158 60 51</span>
+                <span style={styles.infoLabel}>Réservation / Contact</span>
+                <a href={`tel:${phoneNumber}`} style={styles.infoValueLink}>
+                  {displayPhone}
+                </a>
               </div>
             </div>
 
             {/* Bouton d'action */}
-            <button className="hero-button" style={styles.getStartedButton}>
-              COMMANDER UN BOUQUET
-            </button>
+            <a
+              href={`https://wa.me/221${phoneNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-button"
+              style={styles.getStartedButton}
+            >
+              RÉSERVER UN SOIN
+            </a>
           </div>
         </div>
       </section>
@@ -133,8 +143,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     right: 0,
     bottom: 0,
     background:
-      "radial-gradient(circle at left, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 100%)",
-    backgroundColor: "rgba(0, 0, 0, 0.4)",
+      "radial-gradient(circle at left, rgba(28,22,21,0.85) 0%, rgba(28,22,21,0.4) 100%)",
+    backgroundColor: "rgba(28, 22, 21, 0.5)",
     zIndex: 1,
   },
   heroContentWrapper: {
@@ -153,11 +163,11 @@ const styles: { [key: string]: React.CSSProperties } = {
     textAlign: "left",
   },
   subtitle: {
-    color: "#72B842", // Vert du logo
-    fontSize: "16px",
+    color: "#E2BAA9", // Vieux rose doux du logo
+    fontSize: "15px",
     fontWeight: "600",
-    letterSpacing: "1px",
-    marginBottom: "10px",
+    letterSpacing: "1.5px",
+    marginBottom: "12px",
     display: "inline-block",
     textTransform: "uppercase",
   },
@@ -168,7 +178,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     margin: "0 0 25px 0",
   },
   description: {
-    color: "rgba(255, 255, 255, 0.85)",
+    color: "rgba(255, 255, 255, 0.88)",
     fontSize: "16px",
     lineHeight: "1.7",
     maxWidth: "500px",
@@ -186,7 +196,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     flexDirection: "column",
   },
   infoLabel: {
-    color: "#72B842", // Vert du logo
+    color: "#E2BAA9", // Vieux rose doux du logo
     fontSize: "13px",
     fontWeight: "600",
     textTransform: "uppercase",
@@ -199,17 +209,25 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: "rgba(255, 255, 255, 0.95)",
     fontFamily: "sans-serif",
   },
+  infoValueLink: {
+    fontSize: "14px",
+    color: "rgba(255, 255, 255, 0.95)",
+    fontFamily: "sans-serif",
+    textDecoration: "none",
+  },
   getStartedButton: {
-    backgroundColor: "#72B842", // Vert du logo
-    color: "white",
+    display: "inline-block",
+    backgroundColor: "#E2BAA9", // Vieux rose
+    color: "#2A2421",
     border: "none",
     padding: "16px 36px",
     fontSize: "12px",
-    fontWeight: "600",
+    fontWeight: "700",
     letterSpacing: "1.5px",
     cursor: "pointer",
     transition: "background-color 0.3s ease, transform 0.2s ease",
-    borderRadius: "2px",
+    borderRadius: "25px",
+    textDecoration: "none",
   },
 };
 

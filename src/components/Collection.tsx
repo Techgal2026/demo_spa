@@ -14,7 +14,7 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
   image,
   title,
   description,
-  linkHref = "#",
+  linkHref = "https://wa.me/221776913230",
 }) => (
   <div className="collection-card" style={styles.card}>
     <div
@@ -26,7 +26,12 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
     <div className="collection-card-content" style={styles.cardContent}>
       <h3 style={styles.cardTitle}>{title}</h3>
       <p style={styles.cardDescription}>{description}</p>
-      <a href={linkHref} style={styles.readMoreLink}>
+      <a
+        href={linkHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={styles.readMoreLink}
+      >
         EN SAVOIR PLUS
       </a>
     </div>
@@ -34,12 +39,12 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
 );
 
 const Collection: React.FC = () => {
-  const flowerList = [
-    "Bouquet Éclat de Soleil",
-    "Composition d'Alstroeméria",
-    "Roses Blanches Royales",
-    "Tulipes & Fleurs Champêtres",
-    "Bouquet Douceur Rose",
+  const serviceList = [
+    "Soin Visage Hydratant & Éclat",
+    "Massage Relaxant aux Huiles Bio",
+    "Rituel Hammam & Gommage Corps",
+    "Manucure & Pédicure Spa",
+    "Épilation Douce & Soins Apaisants",
   ];
 
   return (
@@ -97,19 +102,20 @@ const Collection: React.FC = () => {
         {/* Colonne 1 : En-tête, Liste à puces & Bouton d'action */}
         <div className="collection-info-column" style={styles.infoColumn}>
           <div>
-            <span style={styles.subtitle}>Notre Collection</span>
+            <span style={styles.subtitle}>Nos Prestations</span>
             <h2 className="collection-title" style={styles.title}>
-              Fleurs D'Exception
+              Soins D'Exception
             </h2>
             <p style={styles.description}>
-              Découvrez une sélection variée de bouquets soigneusement composés
-              par nos artisans fleuristes pour illuminer toutes vos occasions.
+              Découvrez notre gamme complète de traitements conçus pour
+              revitaliser votre corps et apaiser votre esprit dans une ambiance
+              chaleureuse.
             </p>
 
             <ul style={styles.list}>
-              {flowerList.map((item, index) => (
+              {serviceList.map((item, index) => (
                 <li key={index} style={styles.listItem}>
-                  <Check size={14} color="#72B842" style={styles.checkIcon} />
+                  <Check size={14} color="#B88E7D" style={styles.checkIcon} />
                   <span>{item}</span>
                 </li>
               ))}
@@ -118,24 +124,29 @@ const Collection: React.FC = () => {
 
           <div>
             <div style={styles.divider} />
-            <button style={styles.actionButton}>
-              VOIR TOUTE LA COLLECTION
-            </button>
+            <a
+              href="https://wa.me/221776913230"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={styles.actionButton}
+            >
+              VOIR TOUS NOS SOINS
+            </a>
           </div>
         </div>
 
-        {/* Colonne 2 : Carte Élégance Rose */}
+        {/* Colonne 2 : Carte Soins du Visage */}
         <CollectionCard
-          image="/c.jpg"
-          title="Fleurs Douceur & Élégance"
-          description="Une harmonie de nuances roses et délicates, idéale pour exprimer vos sentiments avec subtilité et tendresse."
+          image="/c3.jpg"
+          title="Rituels Visage & Éclat"
+          description="Des soins ciblés pour nourrir, purifier et redonner une brillance naturelle et durable à votre teint."
         />
 
-        {/* Colonne 3 : Carte Idées pour Mariage */}
+        {/* Colonne 3 : Carte Massages & Bien-être */}
         <CollectionCard
-          image="/c2.jpg"
-          title="Compositions Pour Mariages"
-          description="Des arrangements floraux féeriques et sur-mesure pour sublimer le plus beau jour de votre vie."
+          image="/c4.jpg"
+          title="Massages & Relaxation"
+          description="Une expérience sensorielle profonde pour relâcher toutes les tensions musculaires et restaurer votre énergie."
         />
       </div>
     </section>
@@ -148,7 +159,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: "80px 20px",
     backgroundColor: "#ffffff",
     fontFamily: "var(--font-playfair), 'Playfair Display', serif",
-    color: "#333333",
+    color: "#2A2421",
     width: "100%",
     boxSizing: "border-box",
   },
@@ -169,25 +180,25 @@ const styles: { [key: string]: React.CSSProperties } = {
     paddingRight: "10px",
   },
   subtitle: {
-    color: "#72B842",
-    fontSize: "15px",
+    color: "#B88E7D",
+    fontSize: "14px",
     fontWeight: "600",
     display: "block",
     marginBottom: "8px",
     textTransform: "uppercase",
-    letterSpacing: "0.5px",
+    letterSpacing: "1px",
   },
   title: {
     fontSize: "36px",
     fontWeight: "normal",
     lineHeight: "1.2",
     margin: "0 0 20px 0",
-    color: "#111111",
+    color: "#2A2421",
   },
   description: {
     fontSize: "13px",
     lineHeight: "1.7",
-    color: "#777777",
+    color: "#666666",
     marginBottom: "25px",
     fontFamily: "sans-serif",
   },
@@ -204,7 +215,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignItems: "center",
     gap: "10px",
     fontSize: "13px",
-    color: "#555555",
+    color: "#444444",
     fontFamily: "sans-serif",
   },
   checkIcon: {
@@ -212,11 +223,12 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   divider: {
     height: "1px",
-    backgroundColor: "#eee",
+    backgroundColor: "#f0f0f0",
     marginBottom: "25px",
   },
   actionButton: {
-    backgroundColor: "#72B842",
+    display: "block",
+    backgroundColor: "#2A2421",
     color: "#ffffff",
     border: "none",
     padding: "16px 24px",
@@ -225,18 +237,23 @@ const styles: { [key: string]: React.CSSProperties } = {
     letterSpacing: "1px",
     cursor: "pointer",
     width: "100%",
+    textAlign: "center",
     textTransform: "uppercase",
+    textDecoration: "none",
+    borderRadius: "25px",
+    boxSizing: "border-box",
     transition: "background-color 0.3s ease",
   },
 
   /* Cartes de collection */
   card: {
     backgroundColor: "#ffffff",
-    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
+    boxShadow: "0 10px 30px rgba(42, 36, 33, 0.05)",
     display: "flex",
     flexDirection: "column",
-    borderRadius: "2px",
+    borderRadius: "6px",
     overflow: "hidden",
+    border: "1px solid #FAF7F5",
   },
   cardImageWrapper: {
     width: "100%",
@@ -258,18 +275,18 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "22px",
     fontWeight: "normal",
     margin: "0 0 15px 0",
-    color: "#222222",
+    color: "#2A2421",
   },
   cardDescription: {
     fontSize: "13px",
     lineHeight: "1.7",
-    color: "#777777",
+    color: "#666666",
     margin: "0 0 20px 0",
     fontFamily: "sans-serif",
     flexGrow: 1,
   },
   readMoreLink: {
-    color: "#72B842",
+    color: "#B88E7D",
     fontSize: "12px",
     fontWeight: "600",
     letterSpacing: "1px",

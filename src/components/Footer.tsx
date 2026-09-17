@@ -5,9 +5,9 @@ import React from "react";
 const Footer: React.FC = () => {
   const footerLinks = [
     { name: "À Propos", href: "#" },
-    { name: "Nos Tarifs", href: "#" },
-    { name: "FAQ", href: "#" },
-    { name: "Blog", href: "#" },
+    { name: "Nos Prestations", href: "#" },
+    { name: "Tarifs", href: "#" },
+    { name: "Avis Clients", href: "#" },
     { name: "Contact", href: "#" },
   ];
 
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
     },
   ];
 
-  const bgImage = "/fooo.webp";
+  const bgImage = "/footer.png";
 
   return (
     <footer
@@ -114,7 +114,7 @@ const Footer: React.FC = () => {
       <div style={styles.container}>
         <div className="footer-top-row" style={styles.topRow}>
           <div style={styles.logo}>
-            Ndiaye Fleuriste <span style={styles.logoSub}>Family</span>
+            Secret Beauty <span style={styles.logoSub}>& Spa</span>
           </div>
 
           <nav className="footer-nav-links" style={styles.navLinks}>
@@ -143,7 +143,7 @@ const Footer: React.FC = () => {
 
         <div className="footer-bottom-row" style={styles.bottomRow}>
           <div style={styles.copyright}>
-            © {new Date().getFullYear()} Ndiaye Fleuriste Family. Tous droits
+            © {new Date().getFullYear()} Secret Beauty & Spa. Tous droits
             réservés.
           </div>
 
@@ -165,7 +165,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   footer: {
     position: "relative",
     width: "100%",
-    backgroundColor: "#0a0a0a",
+    backgroundColor: "#1A1513",
     backgroundSize: "cover",
     backgroundPosition: "center left",
     color: "#ffffff",
@@ -179,7 +179,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.75)",
+    backgroundColor: "rgba(26, 21, 19, 0.85)",
     zIndex: 1,
   },
   container: {
@@ -197,13 +197,14 @@ const styles: { [key: string]: React.CSSProperties } = {
     gap: "20px",
   },
   logo: {
-    fontFamily: "'Playball', 'Dancing Script', cursive",
-    fontSize: "32px",
+    fontFamily: "var(--font-playfair), 'Playfair Display', serif",
+    fontSize: "28px",
     color: "#ffffff",
     fontWeight: "normal",
+    letterSpacing: "0.5px",
   },
   logoSub: {
-    color: "#72B842",
+    color: "#B88E7D",
   },
   navLinks: {
     display: "flex",
@@ -224,16 +225,16 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   socialIcon: {
     color: "#ffffff",
-    opacity: 0.9,
+    opacity: 0.85,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     textDecoration: "none",
-    transition: "opacity 0.2s ease",
+    transition: "opacity 0.2s ease, color 0.2s ease",
   },
   divider: {
     height: "1px",
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    backgroundColor: "rgba(255, 255, 255, 0.12)",
     marginBottom: "25px",
   },
   bottomRow: {

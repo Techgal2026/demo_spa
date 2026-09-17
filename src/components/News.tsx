@@ -19,35 +19,36 @@ interface MainArticle {
 const News: React.FC = () => {
   const recentArticles: RecentArticle[] = [
     {
-      title: "Sublimez vos gâteaux d'exception avec des fleurs fraîches",
+      title: "5 astuces pour garder un teint éclatant tout au long de l'année",
       date: "12 Mai 2024",
     },
     {
-      title: "Comment intégrer l'art floral dans votre quotidien",
+      title: "Les bienfaits insoupçonnés du massage californien sur le stress",
       date: "28 Avril 2024",
     },
     {
-      title: "Les secrets pour réussir la création d'un bouquet d'anniversaire",
+      title:
+        "Pourquoi intégrer les huiles essentielles dans votre routine beauté",
       date: "15 Avril 2024",
     },
   ];
 
   const mainArticles: MainArticle[] = [
     {
-      category: "Décoration",
-      title: "Sublimez vos gâteaux d'exception avec des fleurs fraîches",
+      category: "Soin du Visage",
+      title: "5 astuces pour garder un teint éclatant tout au long de l'année",
       date: "12 Mai 2024",
       description:
-        "Découvrez nos conseils d'experts pour associer élégance florale et création pâtissière lors de vos événements inoubliables...",
-      image: "/new.jpg",
+        "Découvrez nos conseils d'experts pour hydrater, purifier et sublimer votre peau au quotidien avec des rituels simples et efficaces...",
+      image: "/new3.jpg",
     },
     {
-      category: "Cérémonie",
-      title: "Comment intégrer l'art floral dans votre quotidien",
+      category: "Bien-Être",
+      title: "Les bienfaits insoupçonnés du massage californien sur le stress",
       date: "28 Avril 2024",
       description:
-        "Des conseils simples et inspirants pour apporter de la fraîcheur, des couleurs et du bien-être dans votre intérieur au quotidien...",
-      image: "/new2.jpg",
+        "Plongez dans l'univers de la relaxation profonde et découvrez comment ce soin rééquilibre votre corps et libère les tensions accumulées...",
+      image: "/new4.jpg",
     },
   ];
 
@@ -115,7 +116,7 @@ const News: React.FC = () => {
           <div>
             <span style={styles.subtitle}>Dernières Actualités</span>
             <h2 className="news-title" style={styles.title}>
-              Conseils & Articles
+              Conseils & Bien-Être
             </h2>
           </div>
           <button className="news-all-btn" style={styles.allNewsBtn}>
@@ -135,7 +136,7 @@ const News: React.FC = () => {
                   <div key={index} style={styles.recentItem}>
                     <h4 style={styles.recentItemTitle}>{item.title}</h4>
                     <div style={styles.dateRow}>
-                      <Calendar size={13} color="#bbb" />
+                      <Calendar size={13} color="#B88E7D" />
                       <span style={styles.dateText}>{item.date}</span>
                     </div>
                   </div>
@@ -162,7 +163,7 @@ const News: React.FC = () => {
                 <h3 style={styles.articleTitle}>{article.title}</h3>
 
                 <div style={styles.dateRow}>
-                  <Calendar size={13} color="#bbb" />
+                  <Calendar size={13} color="#B88E7D" />
                   <span style={styles.dateText}>{article.date}</span>
                 </div>
 
@@ -186,7 +187,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: "80px 20px",
     backgroundColor: "#ffffff",
     fontFamily: "var(--font-playfair), 'Playfair Display', serif",
-    color: "#333333",
+    color: "#2A2421",
     width: "100%",
     boxSizing: "border-box",
   },
@@ -202,22 +203,22 @@ const styles: { [key: string]: React.CSSProperties } = {
     marginBottom: "40px",
   },
   subtitle: {
-    color: "#72B842",
-    fontSize: "15px",
+    color: "#B88E7D",
+    fontSize: "14px",
     fontWeight: "600",
     display: "block",
     marginBottom: "8px",
     textTransform: "uppercase",
-    letterSpacing: "0.5px",
+    letterSpacing: "1px",
   },
   title: {
     fontSize: "40px",
     fontWeight: "normal",
     margin: 0,
-    color: "#111111",
+    color: "#2A2421",
   },
   allNewsBtn: {
-    backgroundColor: "#72B842",
+    backgroundColor: "#2A2421",
     color: "#ffffff",
     border: "none",
     padding: "14px 32px",
@@ -225,6 +226,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: "600",
     letterSpacing: "1px",
     cursor: "pointer",
+    borderRadius: "25px",
     textTransform: "uppercase",
     transition: "background-color 0.3s ease",
   },
@@ -240,19 +242,19 @@ const styles: { [key: string]: React.CSSProperties } = {
   /* Colonne Articles Récents */
   recentNewsCard: {
     backgroundColor: "#ffffff",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
-    border: "1px solid #f0f0f0",
+    boxShadow: "0 10px 30px rgba(42, 36, 33, 0.05)",
+    border: "1px solid #FAF7F5",
     padding: "35px 30px 25px 30px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    borderRadius: "2px",
+    borderRadius: "8px",
   },
   recentNewsTitle: {
     fontSize: "24px",
     fontWeight: "normal",
     margin: "0 0 25px 0",
-    color: "#222222",
+    color: "#2A2421",
   },
   recentList: {
     display: "flex",
@@ -270,7 +272,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: "normal",
     lineHeight: "1.4",
     margin: 0,
-    color: "#333333",
+    color: "#2A2421",
     cursor: "pointer",
   },
   dateRow: {
@@ -281,11 +283,11 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   dateText: {
     fontSize: "12px",
-    color: "#aaaaaa",
+    color: "#888888",
     fontFamily: "sans-serif",
   },
   loadMoreBtn: {
-    backgroundColor: "#72B842",
+    backgroundColor: "#B88E7D",
     color: "#ffffff",
     border: "none",
     padding: "14px",
@@ -294,6 +296,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     letterSpacing: "1px",
     cursor: "pointer",
     width: "100%",
+    borderRadius: "20px",
     textTransform: "uppercase",
     transition: "background-color 0.3s ease",
   },
@@ -308,6 +311,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     width: "100%",
     height: "250px",
     overflow: "hidden",
+    borderRadius: "8px",
     marginBottom: "20px",
   },
   articleImage: {
@@ -321,28 +325,30 @@ const styles: { [key: string]: React.CSSProperties } = {
     flexGrow: 1,
   },
   categoryTag: {
-    color: "#72B842",
+    color: "#B88E7D",
     fontSize: "13px",
     fontWeight: "600",
     marginBottom: "10px",
     display: "inline-block",
+    textTransform: "uppercase",
+    letterSpacing: "0.5px",
   },
   articleTitle: {
     fontSize: "22px",
     fontWeight: "normal",
     lineHeight: "1.3",
     margin: "0 0 10px 0",
-    color: "#222222",
+    color: "#2A2421",
   },
   articleDescription: {
     fontSize: "13px",
     lineHeight: "1.7",
-    color: "#777777",
+    color: "#666666",
     margin: "15px 0 20px 0",
     fontFamily: "sans-serif",
   },
   readMoreLink: {
-    color: "#72B842",
+    color: "#B88E7D",
     fontSize: "12px",
     fontWeight: "600",
     letterSpacing: "1px",
