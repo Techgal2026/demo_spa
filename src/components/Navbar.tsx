@@ -24,11 +24,13 @@ const Nav: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  // États du formulaire de réservation
+  // États du formulaire de réservation mis à jour
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
-    service: "Soin du visage",
+    email: "",
+    hasInsurance: "Non",
+    isNewPatient: "Oui",
     date: "",
     time: "",
     notes: "",
@@ -78,7 +80,9 @@ const Nav: React.FC = () => {
       `✨ *NOUVELLE DEMANDE DE RÉSERVATION* ✨\n\n` +
       `👤 *Nom complet :* ${formData.fullName}\n` +
       `📞 *Téléphone :* ${formData.phone}\n` +
-      `💅 *Soin choisi :* ${formData.service}\n` +
+      `✉️ *Email :* ${formData.email || "Non renseigné"}\n` +
+      `🛡️ *Assurance :* ${formData.hasInsurance}\n` +
+      `🆕 *Nouveau patient :* ${formData.isNewPatient}\n` +
       `📅 *Date souhaitée :* ${formData.date}\n` +
       `⏰ *Heure souhaitée :* ${formData.time}\n` +
       (formData.notes ? `📝 *Notes :* ${formData.notes}\n\n` : `\n`) +
@@ -95,7 +99,9 @@ const Nav: React.FC = () => {
     setFormData({
       fullName: "",
       phone: "",
-      service: "Soin du visage",
+      email: "",
+      hasInsurance: "Non",
+      isNewPatient: "Oui",
       date: "",
       time: "",
       notes: "",
@@ -149,6 +155,25 @@ const Nav: React.FC = () => {
         }
         .input-field:focus {
           border-color: #B88E7D;
+        }
+
+        .radio-group {
+          display: flex;
+          gap: 15px;
+          align-items: center;
+          margin-top: 2px;
+        }
+        .radio-label {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 13px;
+          color: #2A2421;
+          cursor: pointer;
+        }
+        .radio-input {
+          accent-color: #B88E7D;
+          cursor: pointer;
         }
       `}</style>
 
@@ -317,7 +342,7 @@ const Nav: React.FC = () => {
         <div style={styles.modalOverlay}>
           <div style={styles.modalContent}>
             <div style={styles.modalHeader}>
-              <h3 style={styles.modalTitle}>Réserver votre soin</h3>
+              <h3 style={styles.modalTitle}>Réserver votre rendez-vous</h3>
               <button
                 style={styles.closeButton}
                 onClick={() => setIsModalOpen(false)}
@@ -340,37 +365,92 @@ const Nav: React.FC = () => {
                 />
               </div>
 
-              <div style={styles.formGroup}>
-                <label style={styles.label}>Téléphone *</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  required
-                  className="input-field"
-                  placeholder="Ex: 77 000 00 00"
-                  value={formData.phone}
-                  onChange={handleChange}
-                />
+              <div style={{ display: "flex", gap: "10px" }}>
+                <div style={{ ...styles.formGroup, flex: 1 }}>
+                  <label style={styles.label}>Téléphone *</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    className="input-field"
+                    placeholder="Ex: 77 000 00 00"
+                    value={formData.phone}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div style={{ ...styles.formGroup, flex: 1 }}>
+                  <label style={styles.label}>Email *</label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className="input-field"
+                    placeholder="exemple@email.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
 
+              {/* Question Assurance */}
               <div style={styles.formGroup}>
-                <label style={styles.label}>Service / Soin *</label>
-                <select
-                  name="service"
-                  className="input-field"
-                  value={formData.service}
-                  onChange={handleChange}
-                >
-                  <option value="Soin du visage">Soin du visage</option>
-                  <option value="Massage Relaxant">Massage Relaxant</option>
-                  <option value="Manucure & Pédicure">
-                    Manucure & Pédicure
-                  </option>
-                  <option value="Épilation">Épilation</option>
-                  <option value="Coiffure & Esthétique">
-                    Coiffure & Esthétique
-                  </option>
-                </select>
+                <label style={styles.label}>Avez-vous une assurance ? *</label>
+                <div className="radio-group">
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      name="hasInsurance"
+                      value="Oui"
+                      checked={formData.hasInsurance === "Oui"}
+                      onChange={handleChange}
+                      className="radio-input"
+                    />
+                    Oui
+                  </label>
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      name="hasInsurance"
+                      value="Non"
+                      checked={formData.hasInsurance === "Non"}
+                      onChange={handleChange}
+                      className="radio-input"
+                    />
+                    Non
+                  </label>
+                </div>
+              </div>
+
+              {/* Question Nouveau Patient */}
+              <div style={styles.formGroup}>
+                <label style={styles.label}>
+                  Êtes-vous un nouveau patient ? *
+                </label>
+                <div className="radio-group">
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      name="isNewPatient"
+                      value="Oui"
+                      checked={formData.isNewPatient === "Oui"}
+                      onChange={handleChange}
+                      className="radio-input"
+                    />
+                    Oui
+                  </label>
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      name="isNewPatient"
+                      value="Non"
+                      checked={formData.isNewPatient === "Non"}
+                      onChange={handleChange}
+                      className="radio-input"
+                    />
+                    Non
+                  </label>
+                </div>
               </div>
 
               <div style={{ display: "flex", gap: "10px" }}>
@@ -400,12 +480,12 @@ const Nav: React.FC = () => {
               </div>
 
               <div style={styles.formGroup}>
-                <label style={styles.label}>Notes ou préférences</label>
+                <label style={styles.label}>Notes ou précisions</label>
                 <textarea
                   name="notes"
-                  rows={3}
+                  rows={2}
                   className="input-field"
-                  placeholder="Précisions sur votre soin..."
+                  placeholder="Précisions sur votre rendez-vous..."
                   value={formData.notes}
                   onChange={handleChange}
                 />
@@ -426,7 +506,7 @@ const Nav: React.FC = () => {
 const styles: { [key: string]: React.CSSProperties } = {
   navContainer: {
     display: "flex",
-    justifyContent: "space-between",
+    justify: "space-between",
     alignItems: "center",
     padding: "16px 40px",
     color: "white",
@@ -697,7 +777,9 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: "#FFFFFF",
     borderRadius: "16px",
     width: "100%",
-    maxWidth: "450px",
+    maxWidth: "460px",
+    maxHeight: "90vh",
+    overflowY: "auto",
     padding: "24px",
     boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)",
     boxSizing: "border-box",
